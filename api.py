@@ -10,11 +10,11 @@ def get_json_api():
 
 
 def post_json_api():
-    url = 'https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=a6fd3a58aeb4aa726dbf7f25f63442db1c97f279'
+    url = 'https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=' + TOKEN
     payload = {'file': 'answer', 'filename': 'answer.json'}
     headers = {'Content-Type': 'multipart/form-data', 'Accept': 'application/json'}
-    p = requests.request('POST', url=url, data=payload, headers=headers)
-    return p.history
+    p = requests.post(url=url, data=payload, headers=headers)
+    return p.status_code
 
 
 if __name__ == '__main__':
