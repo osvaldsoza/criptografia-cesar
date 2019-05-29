@@ -13,7 +13,7 @@ def post_json_api():
     url = 'https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=' + TOKEN
     payload = {'file': 'answer', 'filename': 'answer.json'}
     headers = {'Content-Type': 'multipart/form-data', 'Accept': 'application/json'}
-    p = requests.post(url=url, data=payload, headers=headers)
+    p = requests.post(url, data=payload, headers=headers)
     return p.status_code
 
 
