@@ -31,13 +31,6 @@ def post_json_api():
     return res.json()
     """
 
-    """
-    with open('answer.json', 'rb') as f:
-        r = requests.post('https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=' + TOKEN,
-                          files={'answer.json': f})
-        return r.text
-    """
-
 
 if __name__ == '__main__':
     print(post_json_api())
