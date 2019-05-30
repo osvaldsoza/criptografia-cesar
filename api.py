@@ -1,4 +1,3 @@
-#  from requests_toolbelt import MultipartEncoder
 import requests
 
 TOKEN = 'a6fd3a58aeb4aa726dbf7f25f63442db1c97f279'
@@ -10,11 +9,34 @@ def get_json_api():
 
 
 def post_json_api():
+    """
     url = 'https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=' + TOKEN
-    payload = {'file': 'answer', 'filename': 'answer.json'}
+    payload = {'file': 'answer', 'filename': open('answer.json', 'rb')}
     headers = {'Content-Type': 'multipart/form-data', 'Accept': 'application/json'}
     p = requests.post(url, data=payload, headers=headers)
-    return p.status_code
+    return p.encoding
+    """
+
+    """
+    headers = {
+      'Content-Type': 'multipart/form-data',
+      'Accept': 'application/json'
+    }
+
+    file = open('answer.json', 'rb')
+    files = {'answer': file}
+
+    url = 'https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=' + TOKEN
+    res = requests.post(url, files=files, headers=headers)
+    return res.json()
+    """
+
+    """
+    with open('answer.json', 'rb') as f:
+        r = requests.post('https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=' + TOKEN,
+                          files={'answer.json': f})
+        return r.text
+    """
 
 
 if __name__ == '__main__':
