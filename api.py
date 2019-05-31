@@ -9,27 +9,12 @@ def get_json_api():
 
 
 def post_json_api():
-    """
     url = 'https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=' + TOKEN
-    payload = {'file': 'answer', 'filename': open('answer.json', 'rb')}
-    headers = {'Content-Type': 'multipart/form-data', 'Accept': 'application/json'}
+    payload = {'Content-Disposition': 'form-data', 'file': 'answer', 'filename': 'answer.json',
+               'Content-Type': 'application/json'}
+    headers = {'content-Type': 'multipart/form-data'}
     p = requests.post(url, data=payload, headers=headers)
-    return p.encoding
-    """
-
-    """
-    headers = {
-      'Content-Type': 'multipart/form-data',
-      'Accept': 'application/json'
-    }
-
-    file = open('answer.json', 'rb')
-    files = {'answer': file}
-
-    url = 'https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=' + TOKEN
-    res = requests.post(url, files=files, headers=headers)
-    return res.json()
-    """
+    return p.text
 
 
 if __name__ == '__main__':
